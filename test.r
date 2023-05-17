@@ -1,21 +1,15 @@
 
+alternatives <- c("A1", "A2", "A3", "A4", "A5")
+types <- c("max", "min", "max", "max")
+weights <- c(0.3, 0.25, 0.25, 0.2)
+data <- matrix(c(
+  c(80000, 50000, 70000, 65000, 75000), # criterion 1 values
+  c(400, 150, 250, 300, 100), # criterion 2 values
+  c(6, 6, 9, 4, 6), # criterion 3 values
+  c(9, 7, 7, 8, 6) # criterion 4 values
+), nrow=5, ncol=4)
+
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-csv <- read.table('test.csv', header = FALSE, sep = ",")
-
-ncriterios <- ncol(csv) - 1
-nalternativas <- nrow(csv) - 4
-  
-pesos <- as.numeric(gsub(",", ".", csv[3,2:(ncriterios+1)]))
-alternativas <- as.character(csv[5:(4+nalternativas),1])
-
-tipos <- tolower(as.character(csv[2,2:(ncriterios+1)]))
-
-matriz <- csv[5:(4+nalternativas),2:(ncriterios+1)]
-matriz[,] <- apply(matriz[,], 2, function(x) as.numeric(gsub(",", ".", x)))
-
-rm(csv, ncriterios, nalternativas)
-
 source("./rwisp.r")
-result <- wispcalc(matriz, alternativas, tipos, pesos)
+result <- wispcalc(data, alternatives, types, weights)
 print(result)
