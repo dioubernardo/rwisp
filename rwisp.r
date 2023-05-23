@@ -110,3 +110,42 @@ wispcalc <- function(data, alternatives, types, weights) {
   })
 }
 
+#' Abstraction for extracting data from a CSV file to run the wispcalc function
+#' File requirements: 
+#'  - Separated by COMMA
+#'  - Do not use thousands separator
+#' Example file in https://github.com/dioubernardo/rwisp/blob/main/test.csv
+#' @param file the name of the file
+#' @returns A matrix with the alternatives and their global utilities, sorted in descending order of utility.
+rwispfromcsv <- function(file){
+  tryCatch({
+    
+    csv <- read.table(file, header = FALSE, sep = ",")
+    
+    if (tolower(csv[1,1]) != 'criteria')
+      stop('Non-standard file the first line must contain the criteria, see example file')
+    if (tolower(csv[2,1]) != 'type')
+      stop('Non-standard file the second line must contain the types, see example file')
+    if (tolower(csv[3,1]) != 'weight')
+      stop('Non-standard file the third line must contain the weights, see example file')
+    if (csv[4,1] != '')
+      stop('Non-default file the fourth line must be empty, see example file')
+
+    ncriteria <- ncol(csv) - 1
+    nalternatives <- nrow(csv) - 4
+    
+    weights <- as.numeric(gsub(",", ".", csv[3,2:(ncriteria+1)]))
+    alternatives <- as.character(csv[5:(4+nalternatives),1])
+    
+    types <- tolower(as.character(csv[2,2:(ncriteria+1)]))
+    
+    data <- csv[5:(4+nalternatives),2:(ncriteria+1)]
+    data[,] <- apply(data[,], 2, function(x) as.numeric(gsub(",", ".", x)))
+
+    result <- wispcalc(data, alternatives, types, weights)
+    return(result)
+  },
+  error = function(err) {
+    stop(geterrmessage())
+  })
+}
