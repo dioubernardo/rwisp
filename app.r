@@ -21,7 +21,10 @@ ui <- fluidPage(
   actionButton("do", "Resolve"),
   
   p(verbatimTextOutput("errors")),
-  p(tableOutput("result")),
+  
+  p(tableOutput("ui")),
+  p(tableOutput("normalizedData")),
+  p(tableOutput("utilities")),
   
   helpText(
     "This implementation is available at ",
@@ -39,8 +42,10 @@ server <- function(input, output, session) {
         stop("Select a file")
       
       result <- rwispfromcsv(input$file$datapath)
-      colnames(result) <- c('Alternatives','Global Ui')
-      output$result <- renderTable(result)
+      
+      output$ui <- renderTable(result$ui, rownames = TRUE, digits=5)
+      output$normalizedData <- renderTable(result$normalizedData, rownames = TRUE, digits=5)
+      output$utilities <- renderTable(result$utilities, rownames = TRUE, digits=5)
     },
     error = function(err) {
       output$errors <- renderText(geterrmessage())

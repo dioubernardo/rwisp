@@ -33,11 +33,13 @@ wispcalc <- function(data, alternatives, types, weights) {
       stop("The sum of the weights must be equal to 1")
 
     # normalization
-    norm_data <- matrix(0, imax, jmax)
+    normalizedData <- matrix(0, imax, jmax)
+    colnames(normalizedData) = paste("C", 1:jmax, sep="")
+    rownames(normalizedData) = alternatives
     for (j in 1:jmax) {
       max <- max(data[, j])
       for (i in 1:imax) {
-        norm_data[i, j] <- as.numeric(data[i, j]) / max
+        normalizedData[i, j] <- as.numeric(data[i, j]) / max
       }
     }
     
@@ -55,7 +57,7 @@ wispcalc <- function(data, alternatives, types, weights) {
       uiwpdmax <- if (hascriteriamax) 1 else 0
       
       for (j in 1:jmax) {
-        v <- weights[j] * norm_data[i, j]
+        v <- weights[j] * normalizedData[i, j]
         if (types[j] == 1) {
           uiwsdmax <- uiwsdmax + v
           uiwpdmax <- uiwpdmax * v
@@ -92,18 +94,22 @@ wispcalc <- function(data, alternatives, types, weights) {
       u2iwsr[i] <- uiwsr[i] / (1 + uiwsrmax)
       u2iwpr[i] <- uiwpr[i] / (1 + uiwprmax)
     }
-    
+
     # utilidade global
-    ui <- numeric(imax)
+    ui <- matrix(0, imax, 1)
+    colnames(ui) <- c('ui')
+    rownames(ui) = alternatives
     for (i in 1:imax) {
-      ui[i] = (u2iwsd[i] +  u2iwpd[i] +  u2iwsr[i] +  u2iwpr[i]) / 4
+      ui[i,1] = (u2iwsd[i] +  u2iwpd[i] +  u2iwsr[i] +  u2iwpr[i]) / 4
     }
+   # ui <- ui[order(as.numeric(ui[,1]), decreasing = TRUE), ]
+
+    # utilities matrix
+    utilities <- matrix(c(uiwsd, uiwpd, uiwsr, uiwpr, u2iwsd, u2iwpd, u2iwsr, u2iwpr), imax, 8)
+    colnames(utilities) <- c('uiwsd', 'uiwpd', 'uiwsr', 'uiwpr', 'u2iwsd', 'u2iwpd', 'u2iwsr', 'u2iwpr')
+    rownames(utilities) = alternatives
     
-    # montagem da data final
-    result <- matrix(c(alternatives, ui), imax, 2)
-    result <- result[order(as.numeric(result[,2]), decreasing = TRUE), ]
-    
-    return(result)
+    return(list("ui" = ui, "normalizedData" = normalizedData, "utilities" = utilities))
   },
   error = function(err) {
     stop(paste("Error: ", err))
