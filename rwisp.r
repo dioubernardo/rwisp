@@ -42,10 +42,10 @@ wispcalc <- function(data, alternatives, types, weights) {
     }
     
     # calculo das medidas de utilidade
-    uiwsd <- numeric(i)
-    uiwpd <- numeric(i)
-    uiwsr <- numeric(i)
-    uiwpr <- numeric(i)
+    uiwsd <- numeric(imax)
+    uiwpd <- numeric(imax)
+    uiwsr <- numeric(imax)
+    uiwpr <- numeric(imax)
     
     for (i in 1:imax) {
       uiwsdmin <- 0
@@ -65,18 +65,21 @@ wispcalc <- function(data, alternatives, types, weights) {
         }
       }
       
-      # @TODO: verificar as formulas de quando não tem ambos os critérios
       uiwsd[i] = uiwsdmax - uiwsdmin
       uiwpd[i] = uiwpdmax - uiwpdmin
+      
+      if (hascriteriamin == FALSE) uiwsdmin = 1;
+      if (hascriteriamax == FALSE) uiwpdmax = 1;
+      
       uiwsr[i] = uiwsdmax / uiwsdmin
       uiwpr[i] = uiwpdmax / uiwpdmin
     }
     
     # recalcular utilidades
-    üiwsd <- numeric(i)
-    üiwpd <- numeric(i)
-    üiwsr <- numeric(i)
-    üiwpr <- numeric(i)
+    üiwsd <- numeric(imax)
+    üiwpd <- numeric(imax)
+    üiwsr <- numeric(imax)
+    üiwpr <- numeric(imax)
     
     uiwsdmax <- max(uiwsd)
     uiwpdmax <- max(uiwpd)
@@ -91,14 +94,14 @@ wispcalc <- function(data, alternatives, types, weights) {
     }
     
     # utilidade global
-    ui <- numeric(i)
+    ui <- numeric(imax)
     for (i in 1:imax) {
       ui[i] = (üiwsd[i] +  üiwpd[i] +  üiwsr[i] +  üiwpr[i]) / 4
     }
     
     # montagem da data final
     result <- matrix(c(alternatives, ui), imax, 2)
-    result <- result[order(result[, 2], decreasing = TRUE), ]
+    result <- result[order(as.numeric(result[,2]), decreasing = TRUE), ]
     
     return(result)
   },
@@ -106,3 +109,4 @@ wispcalc <- function(data, alternatives, types, weights) {
     stop(paste("Error: ", err))
   })
 }
+
