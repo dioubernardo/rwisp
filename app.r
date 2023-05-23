@@ -7,7 +7,7 @@ ui <- fluidPage(
   titlePanel("WISP Calculator"),
   
   p(
-    "Select the datasheet to be processed. It MUST be in CSV format, using a COMMA as a separator, remember not to use a thousand separator.",
+    "Select the datasheet to be processed. It MUST be in CSV format, remember not to use a thousand separator.",
     "If in doubt, ",
     downloadLink("downloadData", "download the example file"),
     "."

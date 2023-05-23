@@ -112,7 +112,7 @@ wispcalc <- function(data, alternatives, types, weights) {
 
 #' Abstraction for extracting data from a CSV file to run the wispcalc function
 #' File requirements: 
-#'  - Separated by COMMA
+#'  - Separated by comma or semicolon
 #'  - Do not use thousands separator
 #' Example file in https://github.com/dioubernardo/rwisp/blob/main/test.csv
 #' @param file the name of the file
@@ -120,8 +120,14 @@ wispcalc <- function(data, alternatives, types, weights) {
 rwispfromcsv <- function(file){
   tryCatch({
     
-    csv <- read.table(file, header = FALSE, sep = ",")
-    
+    L <- readLines(file, n = 1)
+    numfields <- count.fields(textConnection(L), sep = ";")
+    if (numfields == 1){
+      csv <- read.csv(file, header = FALSE)
+    }else{
+      csv <- read.csv2(file, header = FALSE)
+    }
+
     if (tolower(csv[1,1]) != 'criteria')
       stop('Non-standard file the first line must contain the criteria, see example file')
     if (tolower(csv[2,1]) != 'type')
