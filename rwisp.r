@@ -76,10 +76,10 @@ wispcalc <- function(data, alternatives, types, weights) {
     }
     
     # recalcular utilidades
-    üiwsd <- numeric(imax)
-    üiwpd <- numeric(imax)
-    üiwsr <- numeric(imax)
-    üiwpr <- numeric(imax)
+    u2iwsd <- numeric(imax)
+    u2iwpd <- numeric(imax)
+    u2iwsr <- numeric(imax)
+    u2iwpr <- numeric(imax)
     
     uiwsdmax <- max(uiwsd)
     uiwpdmax <- max(uiwpd)
@@ -87,16 +87,16 @@ wispcalc <- function(data, alternatives, types, weights) {
     uiwprmax <- max(uiwpr)
     
     for (i in 1:imax) {
-      üiwsd[i] <- uiwsd[i] / (1 + uiwsdmax)
-      üiwpd[i] <- uiwpd[i] / (1 + uiwpdmax)
-      üiwsr[i] <- uiwsr[i] / (1 + uiwsrmax)
-      üiwpr[i] <- uiwpr[i] / (1 + uiwprmax)
+      u2iwsd[i] <- uiwsd[i] / (1 + uiwsdmax)
+      u2iwpd[i] <- uiwpd[i] / (1 + uiwpdmax)
+      u2iwsr[i] <- uiwsr[i] / (1 + uiwsrmax)
+      u2iwpr[i] <- uiwpr[i] / (1 + uiwprmax)
     }
     
     # utilidade global
     ui <- numeric(imax)
     for (i in 1:imax) {
-      ui[i] = (üiwsd[i] +  üiwpd[i] +  üiwsr[i] +  üiwpr[i]) / 4
+      ui[i] = (u2iwsd[i] +  u2iwpd[i] +  u2iwsr[i] +  u2iwpr[i]) / 4
     }
     
     # montagem da data final
