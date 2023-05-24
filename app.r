@@ -45,6 +45,8 @@ server <- function(input, output, session) {
       
       output$ui <- renderTable(result$ui, digits=5)
       output$normalizedData <- renderTable(result$normalizedData, rownames = TRUE, digits=5)
+
+      colnames(result$utilities) <- c('uiwsd', 'uiwpd', 'uiwsr', 'uiwpr', 'üiwsd', 'üiwpd', 'üiwsr', 'üiwpr')
       output$utilities <- renderTable(result$utilities, rownames = TRUE, digits=-5)
     },
     error = function(err) {
