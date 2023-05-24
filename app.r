@@ -4,7 +4,6 @@ library(shiny)
 source("rwisp.r", local = TRUE)
 
 ui <- fluidPage(
-  
   titlePanel("WISP Calculator"),
   
   p(
@@ -26,9 +25,12 @@ ui <- fluidPage(
   
   p(verbatimTextOutput("errors")),
   
-  p(tableOutput("ui")),
-  p(tableOutput("normalizedData")),
-  p(tableOutput("utilities")),
+  conditionalPanel(
+    condition = "output.calculated==1",
+    p(h3("Ranking Result"), tableOutput("ui")),
+    p(h3("Normalized Data"), tableOutput("normalizedData")),
+    p(h3("Utility Matrix"), tableOutput("utilities"))
+  ),
   
   helpText(
     "This implementation is available at ",
@@ -42,10 +44,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
+  output$calculated <- reactive(0)
+  outputOptions(output, "calculated", suspendWhenHidden = FALSE)
+  
   observeEvent(input$do, {
     tryCatch({
       output$errors <- NULL
-      output$result <- NULL
+      output$calculated <- reactive(0)
       
       if (is.null(input$file))
         stop("Select a file")
@@ -53,22 +58,14 @@ server <- function(input, output, session) {
       result <- rwispfromcsv(input$file$datapath)
       
       colnames(result$ui) <- c('Position', 'ui')
-      output$ui <- renderTable(
-        result$ui,
-        rownames = TRUE,
-        digits = 5,
-        caption = "Ranking Result",
-        caption.placement = getOption("xtable.caption.placement", "top")
-      )
+      output$ui <- renderTable(result$ui,
+                               rownames = TRUE,
+                               digits = 5)
       
       output$normalizedData <-
-        renderTable(
-          result$normalizedData,
-          rownames = TRUE,
-          digits = 5,
-          caption = "Normalized Data",
-          caption.placement = getOption("xtable.caption.placement", "top")
-        )
+        renderTable(result$normalizedData,
+                    rownames = TRUE,
+                    digits = 5)
       
       colnames(result$utilities) <-
         c('uiwsd',
@@ -80,13 +77,11 @@ server <- function(input, output, session) {
           'üiwsr',
           'üiwpr')
       output$utilities <-
-        renderTable(
-          result$utilities,
-          rownames = TRUE,
-          digits = -5,
-          caption = "Utility Matrix",
-          caption.placement = getOption("xtable.caption.placement", "top")
-        )
+        renderTable(result$utilities,
+                    rownames = TRUE,
+                    digits = -5)
+      
+      output$calculated <- reactive(1)
     },
     error = function(err) {
       output$errors <- renderText(geterrmessage())
