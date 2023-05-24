@@ -70,8 +70,14 @@ wispcalc <- function(data, alternatives, types, weights) {
       uiwsd[i] = uiwsdmax - uiwsdmin
       uiwpd[i] = uiwpdmax - uiwpdmin
       
-      if (hascriteriamin == FALSE) uiwsdmin = 1;
-      if (hascriteriamax == FALSE) uiwpdmax = 1;
+      if (hascriteriamin == FALSE){
+        uiwsdmin <- 1
+        uiwpdmin <- 1
+      } 
+      if (hascriteriamax == FALSE){
+        uiwsdmax <- 1
+        uiwpdmax <- 1
+      }
       
       uiwsr[i] = uiwsdmax / uiwsdmin
       uiwpr[i] = uiwpdmax / uiwpdmin
