@@ -45,7 +45,7 @@ server <- function(input, output, session) {
       
       output$ui <- renderTable(result$ui, rownames = TRUE, digits=5)
       output$normalizedData <- renderTable(result$normalizedData, rownames = TRUE, digits=5)
-      output$utilities <- renderTable(result$utilities, rownames = TRUE, digits=5)
+      output$utilities <- renderTable(result$utilities, rownames = TRUE, digits=-5)
     },
     error = function(err) {
       output$errors <- renderText(geterrmessage())
