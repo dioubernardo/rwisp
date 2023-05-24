@@ -4,6 +4,7 @@ library(shiny)
 source("rwisp.r", local = TRUE)
 
 ui <- fluidPage(
+  
   titlePanel("WISP Calculator"),
   
   p(
@@ -13,10 +14,13 @@ ui <- fluidPage(
     "."
   ),
   
-  fileInput("file", "Select data file", accept = c(
-    "text/csv",
-    "text/comma-separated-values,text/plain",
-    ".csv")),
+  fileInput(
+    "file",
+    "Select data file",
+    accept = c("text/csv",
+               "text/comma-separated-values,text/plain",
+               ".csv")
+  ),
   
   actionButton("do", "Resolve"),
   
@@ -28,7 +32,12 @@ ui <- fluidPage(
   
   helpText(
     "This implementation is available at ",
-    a(href="https://github.com/dioubernardo/rwisp/", "https://github.com/dioubernardo/rwisp/", download=NA, target="_blank")
+    a(
+      href = "https://github.com/dioubernardo/rwisp/",
+      "https://github.com/dioubernardo/rwisp/",
+      download = NA,
+      target = "_blank"
+    )
   )
 )
 
@@ -43,11 +52,41 @@ server <- function(input, output, session) {
       
       result <- rwispfromcsv(input$file$datapath)
       
-      output$ui <- renderTable(result$ui, digits=5)
-      output$normalizedData <- renderTable(result$normalizedData, rownames = TRUE, digits=5)
-
-      colnames(result$utilities) <- c('uiwsd', 'uiwpd', 'uiwsr', 'uiwpr', 'üiwsd', 'üiwpd', 'üiwsr', 'üiwpr')
-      output$utilities <- renderTable(result$utilities, rownames = TRUE, digits=-5)
+      colnames(result$ui) <- c('Position', 'ui')
+      output$ui <- renderTable(
+        result$ui,
+        rownames = TRUE,
+        digits = 5,
+        caption = "Ranking Result",
+        caption.placement = getOption("xtable.caption.placement", "top")
+      )
+      
+      output$normalizedData <-
+        renderTable(
+          result$normalizedData,
+          rownames = TRUE,
+          digits = 5,
+          caption = "Normalized Data",
+          caption.placement = getOption("xtable.caption.placement", "top")
+        )
+      
+      colnames(result$utilities) <-
+        c('uiwsd',
+          'uiwpd',
+          'uiwsr',
+          'uiwpr',
+          'üiwsd',
+          'üiwpd',
+          'üiwsr',
+          'üiwpr')
+      output$utilities <-
+        renderTable(
+          result$utilities,
+          rownames = TRUE,
+          digits = -5,
+          caption = "Utility Matrix",
+          caption.placement = getOption("xtable.caption.placement", "top")
+        )
     },
     error = function(err) {
       output$errors <- renderText(geterrmessage())
@@ -55,8 +94,8 @@ server <- function(input, output, session) {
   })
   
   output$downloadData <- downloadHandler(
-    filename="test.csv", 
-    content=function(con) {
+    filename = "test.csv",
+    content = function(con) {
       file.copy("test.csv", con)
     }
   )

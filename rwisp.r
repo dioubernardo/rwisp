@@ -102,12 +102,14 @@ wispcalc <- function(data, alternatives, types, weights) {
     }
 
     # utilidade global
-    ui <- matrix(c(alternatives, numeric(imax)), imax, 2)
-    colnames(ui) <- c('alternatives','ui')
+    ui <- matrix(0, imax, 2)
+    colnames(ui) <- c('position','ui')
+    rownames(ui) = alternatives
     for (i in 1:imax) {
       ui[i,2] = (u2iwsd[i] +  u2iwpd[i] +  u2iwsr[i] +  u2iwpr[i]) / 4
     }
     ui <- ui[order(as.numeric(ui[,2]), decreasing = TRUE), ]
+    ui[,1] <- c(1:imax)
     
     # utilities matrix
     utilities <- matrix(c(uiwsd, uiwpd, uiwsr, uiwpr, u2iwsd, u2iwpd, u2iwsr, u2iwpr), imax, 8)
