@@ -1,5 +1,5 @@
-Criteria;Revenda;Consumo;Segurança;Estilo
-Type;MAX;MIN;MAX;MAX
+Criteria;Revenda;Consumo;Seguran?a;Estilo
+Optimization;MAX;MIN;MAX;MAX
 Weight;0,3;0,25;0,25;0,2
 ;;;;
 A1;80000;400;6;9

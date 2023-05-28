@@ -3,30 +3,30 @@
 #' 
 #' @param data A numeric data matrix, columns are the criteria, rows are the alternatives
 #' @param alternatives A character vector with the identification of alternatives
-#' @param types A character vector with definition of minimization or maximization for each criterion, expected 'min' or 'max' only
+#' @param optimizations A character vector with definition of minimization or maximization for each criterion, expected 'min' or 'max' only
 #' @param weights A numeric vector with the criteria weights
 #' @returns A matrix with the alternatives and their global utilities, sorted in descending order of utility.
-wispcalc <- function(data, alternatives, types, weights) {
+wispcalc <- function(data, alternatives, optimizations, weights) {
   tryCatch({
     
     imax = nrow(data)
     jmax = ncol(data)
     
-    # type validation
+    # optimizations validation
     hascriteriamin <- FALSE
     hascriteriamax <- FALSE
     for (j in 1:jmax) {
-      if (types[j] == 'max') {
-        types[j] <- 1
+      if (optimizations[j] == 'max') {
+        optimizations[j] <- 1
         hascriteriamax <- TRUE
-      } else if (types[j] == 'min') {
-        types[j] <- -1
+      } else if (optimizations[j] == 'min') {
+        optimizations[j] <- -1
         hascriteriamin <- TRUE
       } else{
-        stop("Only 'min' or 'max' are valid for criteria types")
+        stop("Only 'min' or 'max' are valid for criteria optimization")
       }
     }
-    types <- as.numeric(types)
+    optimizations <- as.numeric(optimizations)
     
     # weights validation
     if (sum(weights) != 1)
@@ -58,7 +58,7 @@ wispcalc <- function(data, alternatives, types, weights) {
       
       for (j in 1:jmax) {
         v <- weights[j] * normalizedData[i, j]
-        if (types[j] == 1) {
+        if (optimizations[j] == 1) {
           uiwsdmax <- uiwsdmax + v
           uiwpdmax <- uiwpdmax * v
         } else{
@@ -143,8 +143,8 @@ rwispfromcsv <- function(file){
 
     if (tolower(csv[1,1]) != 'criteria')
       stop('Non-standard file the first line must contain the criteria, see example file')
-    if (tolower(csv[2,1]) != 'type')
-      stop('Non-standard file the second line must contain the types, see example file')
+    if (tolower(csv[2,1]) != 'optimization')
+      stop('Non-standard file the second line must contain the optimization, see example file')
     if (tolower(csv[3,1]) != 'weight')
       stop('Non-standard file the third line must contain the weights, see example file')
     if (csv[4,1] != '')
@@ -156,12 +156,12 @@ rwispfromcsv <- function(file){
     weights <- as.numeric(gsub(",", ".", csv[3,2:(ncriteria+1)]))
     alternatives <- as.character(csv[5:(4+nalternatives),1])
     
-    types <- tolower(as.character(csv[2,2:(ncriteria+1)]))
+    optimizations <- tolower(as.character(csv[2,2:(ncriteria+1)]))
     
     data <- csv[5:(4+nalternatives),2:(ncriteria+1)]
     data[,] <- apply(data[,], 2, function(x) as.numeric(gsub(",", ".", x)))
 
-    result <- wispcalc(data, alternatives, types, weights)
+    result <- wispcalc(data, alternatives, optimizations, weights)
     return(result)
   },
   error = function(err) {
