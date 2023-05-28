@@ -65,7 +65,7 @@ server <- function(input, output, session) {
       output$normalizedData <-
         renderTable(result$normalizedData,
                     rownames = TRUE,
-                    digits = 5)
+                    digits = 2)
       
       colnames(result$utilities) <-
         c('uiwsd',
