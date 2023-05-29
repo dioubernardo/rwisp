@@ -58,9 +58,10 @@ server <- function(input, output, session) {
       result <- rwispfromcsv(input$file$datapath)
       
       colnames(result$ui) <- c('Position', 'ui')
+
       output$ui <- renderTable(result$ui,
                                rownames = TRUE,
-                               digits = 5)
+                               digits = 2)
       
       output$normalizedData <-
         renderTable(result$normalizedData,
