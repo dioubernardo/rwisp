@@ -1,0 +1,6 @@
+Package: rwisp
+Type: Package
+Title: Implementation of the WISP multicriteria sorting method
+Version: 1.0
+RoxygenNote: 7.2.3
+Encoding: UTF-8

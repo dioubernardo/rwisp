@@ -1,6 +1,8 @@
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-source("./R/rwisp.r")
-result <- rwispfromcsv("test_files/test.csv")
+library(devtools);
+load_all(".");
+
+result <- rwispfromcsv("tests/test.csv")
 print(result)

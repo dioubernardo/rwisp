@@ -1,11 +1,13 @@
+#' Integrated Simple Weighted Sum Product Method - WISP
+#' 
 #' Implementation of An Integrated Simple Weighted Sum Product Method - WISP
 #' more information see https://doi.org/10.1109/TEM.2021.3075783
 #' 
 #' @param data A numeric data matrix, columns are the criteria, rows are the alternatives
 #' @param alternatives A character vector with the identification of alternatives
 #' @param optimizations A character vector with definition of minimization or maximization for each criterion, expected 'min' or 'max' only
-#' @param weights A numeric vector with the criteria weights
-#' @returns A matrix with the alternatives and their global utilities, sorted in descending order of utility.
+#' @param weights A numeric vector with the criteria weights, the sum of all must be 1
+#' @returns list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized data, utilities = utility values
 wispcalc <- function(data, alternatives, optimizations, weights) {
   tryCatch({
     
@@ -124,6 +126,7 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
 }
 
 #' Abstraction for extracting data from a CSV file to run the wispcalc function
+#' 
 #' File requirements: 
 #'  - Separated by comma or semicolon
 #'  - Do not use thousands separator

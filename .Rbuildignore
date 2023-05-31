@@ -1,0 +1,10 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+
+test-csv.r
+teste.r
+
+app.r
+
+rsconnect*
+test_files*
