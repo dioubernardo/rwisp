@@ -1,0 +1,9 @@
+Criteria;Estabilidade;Direitos;Segurança;Custos
+Optimization;MAX;MAX;MAX;MAX
+Weight;0,3;0,25;0,25;0,2
+;;;;
+China;69;37;90;38
+África do Sul;47;54;43;49
+Índia;48;46;79;45
+Brasil;37;45;60;44
+Rússia;47;26;75;62
