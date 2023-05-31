@@ -3,9 +3,10 @@ Type: Package
 Title: rwisp
 Description: Implementation of the WISP multicriteria sorting method.
 Authors@R: 
-    person("Bernardo", "Silva", , "bernardo.silva@furg.br", role = c("aut", "cre"),
+    person("Bernardo", "Silva", email = "bernardo.silva@furg.br", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1466-3393"))
 Version: 1.0.0.0
 RoxygenNote: 7.2.3
 Encoding: UTF-8
 License: GPL (>= 3)
+Imports: utils
