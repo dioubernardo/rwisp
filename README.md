@@ -31,7 +31,7 @@ library('rwisp')
 ...
 ```
 
-### Option 3 - Install from CRAN
+### Option 3 - Install from CRAN (Waiting for CRAN acceptance)
 ```
 install.packages('rwisp')
 library('rwisp')
