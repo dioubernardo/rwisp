@@ -1,7 +1,7 @@
 
 library(shiny)
 
-source("rwisp.r", local = TRUE)
+source("./R/rwisp.r", local = TRUE)
 
 ui <- fluidPage(
   titlePanel("WISP Calculator"),
@@ -92,7 +92,7 @@ server <- function(input, output, session) {
   output$downloadData <- downloadHandler(
     filename = "test.csv",
     content = function(con) {
-      file.copy("test.csv", con)
+      file.copy("test_files/test.csv", con)
     }
   )
   

@@ -10,6 +10,6 @@ data <- matrix(c(
 ), nrow=5, ncol=4)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-source("./rwisp.r")
+source("./R/rwisp.r")
 result <- wispcalc(data, alternatives, optimizations, weights)
 print(result)
