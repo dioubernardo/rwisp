@@ -1,6 +1,6 @@
 
 alternatives <- c("A1", "A2", "A3", "A4", "A5")
-types <- c("max", "min", "max", "max")
+optimizations <- c("max", "min", "max", "max")
 weights <- c(0.3, 0.25, 0.25, 0.2)
 data <- matrix(c(
   c(80000, 50000, 70000, 65000, 75000), # criterion 1 values
@@ -11,5 +11,5 @@ data <- matrix(c(
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source("./rwisp.r")
-result <- wispcalc(data, alternatives, types, weights)
+result <- wispcalc(data, alternatives, optimizations, weights)
 print(result)
