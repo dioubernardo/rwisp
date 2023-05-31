@@ -7,4 +7,5 @@ teste.r
 app.r
 
 rsconnect*
-test_files*
+tests*
+^LICENSE\.md$

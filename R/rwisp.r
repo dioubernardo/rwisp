@@ -3,6 +3,7 @@
 #' Implementation of An Integrated Simple Weighted Sum Product Method - WISP
 #' more information see https://doi.org/10.1109/TEM.2021.3075783
 #' 
+#' @importFrom utils count.fields read.csv read.csv2
 #' @param data A numeric data matrix, columns are the criteria, rows are the alternatives
 #' @param alternatives A character vector with the identification of alternatives
 #' @param optimizations A character vector with definition of minimization or maximization for each criterion, expected 'min' or 'max' only
