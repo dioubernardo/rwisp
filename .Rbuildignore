@@ -9,3 +9,6 @@ app.r
 rsconnect*
 tests*
 ^LICENSE\.md$
+
+cran-comments.md
+notas-mentais.md
