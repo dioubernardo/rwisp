@@ -1,4 +1,4 @@
-# Implementation in R of the WISP multicriteria sorting method
+# Implementation in R of the WISP Multiple Criteria Sorting Method
 
 This project consists of the implementation of the method in R, its tests, the CRAN package and a web application written in R Shiny.
 

@@ -10,7 +10,7 @@ rwispfromcsv(file)
 \item{file}{the name of the file}
 }
 \value{
-A matrix with the alternatives and their global utilities, sorted in descending order of utility.
+list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized data, utilities = utility values
 }
 \description{
 File requirements: 

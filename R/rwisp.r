@@ -133,7 +133,7 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
 #'  - Do not use thousands separator
 #' Example file in https://github.com/dioubernardo/rwisp/blob/main/test.csv
 #' @param file the name of the file
-#' @returns A matrix with the alternatives and their global utilities, sorted in descending order of utility.
+#' @returns list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized data, utilities = utility values
 rwispfromcsv <- function(file){
   tryCatch({
     
