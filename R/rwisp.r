@@ -9,6 +9,7 @@
 #' @param optimizations A character vector with definition of minimization or maximization for each criterion, expected 'min' or 'max' only
 #' @param weights A numeric vector with the criteria weights, the sum of all must be 1
 #' @returns list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized data, utilities = utility values
+#' @export
 wispcalc <- function(data, alternatives, optimizations, weights) {
   tryCatch({
     
@@ -134,6 +135,7 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
 #' Example file in https://github.com/dioubernardo/rwisp/blob/main/test.csv
 #' @param file the name of the file
 #' @returns list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized data, utilities = utility values
+#' @export 
 rwispfromcsv <- function(file){
   tryCatch({
     
