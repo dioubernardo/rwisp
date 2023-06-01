@@ -9,8 +9,6 @@ data <- matrix(c(
   c(9, 7, 7, 8, 6) # criterion 4 values
 ), nrow=5, ncol=4)
 
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
 library(devtools);
 load_all(".");
 
