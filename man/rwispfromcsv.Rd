@@ -19,7 +19,5 @@ File requirements:
 Example file in https://github.com/dioubernardo/rwisp/blob/main/tests/test.csv
 }
 \examples{
-\dontrun{
-result <- rwispfromcsv("test.csv")
-}
+result <- rwispfromcsv("")
 }

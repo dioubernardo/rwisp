@@ -5,10 +5,11 @@ Description: Implementation of the Integrated Simple Weighted Sum Product Method
 Authors@R: 
     person("Bernardo", "Silva", email = "bernardo.silva@furg.br", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1466-3393"))
-Version: 1.0.2
+Version: 1.0.3
 RoxygenNote: 7.2.3
 Encoding: UTF-8
 License: GPL (>= 3)
 URL: https://github.com/dioubernardo/rwisp
 BugReports: https://github.com/dioubernardo/rwisp/issues
 Imports: utils
+Language: en-US

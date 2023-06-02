@@ -148,11 +148,12 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
 #' @returns list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized data, utilities = utility values
 #' @export 
 #' @examples
-#' \dontrun{
-#' result <- rwispfromcsv("test.csv")
-#' }
+#' result <- rwispfromcsv("")
 rwispfromcsv <- function(file){
   tryCatch({
+    
+    if (file == "")
+      return(NULL)
     
     L <- readLines(file, n = 1)
     numfields <- count.fields(textConnection(L), sep = ";")
