@@ -16,5 +16,10 @@ list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized 
 File requirements: 
  - Separated by comma or semicolon
  - Do not use thousands separator
-Example file in https://github.com/dioubernardo/rwisp/blob/main/test.csv
+Example file in https://github.com/dioubernardo/rwisp/blob/main/tests/test.csv
+}
+\examples{
+\dontrun{
+result <- rwispfromcsv("test.csv")
+}
 }
