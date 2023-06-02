@@ -1,5 +1,6 @@
 # Implementation in R of the WISP Multiple Criteria Sorting Method
 
+[![R-CMD-check](https://github.com/dioubernardo/rwisp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dioubernardo/rwisp/actions/workflows/R-CMD-check.yaml)
 [![CRAN release](https://www.r-pkg.org/badges/version/rwisp)](https://cran.r-project.org/package=rwisp)
 
 This project consists of the implementation of the method in R, its tests, the CRAN package and a web application written in R Shiny.
