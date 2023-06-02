@@ -13,3 +13,4 @@ tests*
 cran-comments.md
 notas-mentais.md
 ^CRAN-SUBMISSION$
+^\.github$
