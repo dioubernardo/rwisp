@@ -20,7 +20,8 @@ list with 3 matrix, ui = ranking and the global ui, normalizedData = normalized 
 }
 \description{
 Implementation of An Integrated Simple Weighted Sum Product Method - WISP
-more information see https://doi.org/10.1109/TEM.2021.3075783
+More information about the method at https://doi.org/10.1109/TEM.2021.3075783
+More information about the implementation at https://github.com/dioubernardo/rwisp/blob/main/README.md
 }
 \examples{
 alternatives <- c("A1", "A2", "A3", "A4", "A5")

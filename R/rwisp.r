@@ -1,7 +1,8 @@
 #' Integrated Simple Weighted Sum Product Method - WISP
 #' 
 #' Implementation of An Integrated Simple Weighted Sum Product Method - WISP
-#' more information see https://doi.org/10.1109/TEM.2021.3075783
+#' More information about the method at https://doi.org/10.1109/TEM.2021.3075783
+#' More information about the implementation at https://github.com/dioubernardo/rwisp/blob/main/README.md
 #' 
 #' @importFrom utils count.fields read.csv read.csv2
 #' @param data A numeric data matrix, columns are the criteria, rows are the alternatives
@@ -110,13 +111,13 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
     uiwprmax <- max(uiwpr)
     
     for (i in 1:imax) {
-      u2iwsd[i] <- uiwsd[i] / (1 + uiwsdmax)
-      u2iwpd[i] <- uiwpd[i] / (1 + uiwpdmax)
-      u2iwsr[i] <- uiwsr[i] / (1 + uiwsrmax)
-      u2iwpr[i] <- uiwpr[i] / (1 + uiwprmax)
+      u2iwsd[i] <- (1 + uiwsd[i]) / (1 + uiwsdmax)
+      u2iwpd[i] <- (1 + uiwpd[i]) / (1 + uiwpdmax)
+      u2iwsr[i] <- (1 + uiwsr[i]) / (1 + uiwsrmax)
+      u2iwpr[i] <- (1 + uiwpr[i]) / (1 + uiwprmax)
     }
 
-    # utilidade global
+    # utility global
     ui <- matrix(0, imax, 2)
     colnames(ui) <- c('position','ui')
     rownames(ui) = alternatives
