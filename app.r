@@ -81,14 +81,16 @@ server <- function(input, output, session) {
       
       colnames(result$ui) <- c(i18n$t('Position'), 'ui')
       
-      output$ui <- renderTable(result$ui,
-                               rownames = TRUE,
-                               digits = 2)
-      
+      output$ui <- renderTable({
+        result$ui[,2] <- formatC(result$ui[,2], digits = 2)
+        result$ui[,1] <- formatC(result$ui[,1], digits = 0)
+        result$ui
+      }, rownames = TRUE, align = 'lrr')
+
       output$normalizedData <-
         renderTable(result$normalizedData,
                     rownames = TRUE,
-                    digits = 2)
+                    digits = 3)
       
       colnames(result$utilities) <-
         c('uiwsd',
@@ -100,9 +102,10 @@ server <- function(input, output, session) {
           'ūiwsr',
           'ūiwpr')
       output$utilities <-
-        renderTable(result$utilities,
-                    rownames = TRUE,
-                    digits = -5)
+        renderTable({
+          result$utilities[,] <- formatC(result$utilities[,], digits = 4)
+          result$utilities
+      }, rownames = TRUE, align = 'lrrrrrrrr')
       
       output$calculated <- reactive(1)
     },
