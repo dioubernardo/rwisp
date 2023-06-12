@@ -23,7 +23,9 @@ ui <- fluidPage(
     )
   ),  
   titlePanel(i18n$t('WISP Calculator'), windowTitle=NULL),  
-
+  
+  tags$div(class="clearfix"),
+  
   p(
     i18n$t("Select the spreadsheet to be processed. The file MUST be in CSV format, and you should remember not to use a thousand separator."),
     br(),
