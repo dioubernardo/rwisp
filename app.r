@@ -55,7 +55,9 @@ ui <- fluidPage(
   ),
   
   helpText(
-    i18n$t("This implementation is available at "),
+    i18n$t("This implementation follows the article with doi 10.1109/TEM.2021.3075783, however in step 3 the set of equations used is that of the article with doi 10.3390/axioms10040347, following the recommendations of Professor Dragisa Stanujkić."),
+    br(),
+    i18n$t("The code is open at"),
     a(
       href = "https://github.com/dioubernardo/rwisp/",
       "https://github.com/dioubernardo/rwisp/",
@@ -128,3 +130,4 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+

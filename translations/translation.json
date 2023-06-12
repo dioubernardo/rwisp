@@ -49,8 +49,12 @@
 			"pt-BR": "Matriz de Utilidades"
 		},
 		{
-			"en": "This implementation is available at ",
-			"pt-BR": "Esta implementação está disponível em "
+		  "en": "This implementation follows the article with doi 10.1109/TEM.2021.3075783, however in step 3 the set of equations used is that of the article with doi 10.3390/axioms10040347, following the recommendations of Professor Dragisa Stanujkić.",
+		  "pt-BR": "Está implementação segue o artigo com doi 10.1109/TEM.2021.3075783, porém no passo 3 o conjunto de equações utilizados é o do artigo com doi 10.3390/axioms10040347, seguindo recomendações do próprio professor Dragisa Stanujkić."
+		},
+		{
+			"en": "The code is open at",
+			"pt-BR": "O código está aberto em"
 		},
 		{
 			"en": "Select a file",
