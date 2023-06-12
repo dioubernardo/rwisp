@@ -25,16 +25,16 @@ ui <- fluidPage(
   titlePanel(i18n$t('WISP Calculator'), windowTitle=NULL),  
 
   p(
-    i18n$t("Select the datasheet to be processed. It MUST be in CSV format, remember not to use a thousand separator."),
+    i18n$t("Select the spreadsheet to be processed. The file MUST be in CSV format, and you should remember not to use a thousand separator."),
     br(),
-    i18n$t("If in doubt, "),
+    i18n$t("If you have any doubts, "),
     downloadLink("downloadData", i18n$t("download the example file")),
     "."
   ),
   
   fileInput(
     "file",
-    i18n$t("Select data file"),
+    i18n$t("Select spreadsheet"),
     buttonLabel = i18n$t("Browse..."),
 #   @BUG: https://github.com/Appsilon/shiny.i18n/issues/122
 #    placeholder = i18n$t("No file selected"),    
@@ -55,7 +55,7 @@ ui <- fluidPage(
   ),
   
   helpText(
-    i18n$t("This implementation follows the article with doi 10.1109/TEM.2021.3075783, however in step 3 the set of equations used is that of the article with doi 10.3390/axioms10040347, following the recommendations of Professor Dragisa Stanujkić."),
+    i18n$t("This implementation follows the article DOI 10.1109/TEM.2021.3075783 however, the set of equations used in step 3 is that of the article DOI 10.3390/axioms10040347, following the recommendations of Professor Dragisa Stanujkić."),
     br(),
     i18n$t("The code is open at"),
     a(

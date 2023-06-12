@@ -165,14 +165,14 @@ rwispfromcsv <- function(file){
     }
 
     if (tolower(csv[1,1]) != 'criteria')
-      stop('Non-standard file the first line must contain the criteria, see example file')
+      stop("This file is out of standards. The first line must contain the criteria. See the example file.")
     if (tolower(csv[2,1]) != 'optimization')
-      stop('Non-standard file the second line must contain the optimization, see example file')
+      stop("This file is out of standards. The second line must contain the optimizations. See the example file.")
     if (tolower(csv[3,1]) != 'weight')
-      stop('Non-standard file the third line must contain the weights, see example file')
+      stop("This file is out of standards. The third line must contain the weights. See the example file.")
     if (csv[4,1] != '')
-      stop('Non-default file the fourth line must be empty, see example file')
-
+      stop("This file is out of standards. The fourth line must be empty. See the example file.")
+    
     ncriteria <- ncol(csv) - 1
     nalternatives <- nrow(csv) - 4
     
