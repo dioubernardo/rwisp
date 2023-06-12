@@ -1,39 +1,61 @@
 
 library(shiny)
+library(shiny.i18n)
 
 source("./R/rwisp.r", local = TRUE)
 
+i18n <- Translator$new(translation_json_path='translations/translation.json')
+i18n$set_translation_language('en')
+
 ui <- fluidPage(
-  titlePanel("WISP Calculator"),
   
+  usei18n(i18n),
+  tags$div(
+    style='float: right;',
+    selectInput(
+      inputId = "selected_language",
+      label = "",
+      choices = setNames(
+        i18n$get_languages(),
+        c("English", "Português")
+      ),
+      selected = i18n$get_key_translation()
+    )
+  ),  
+  titlePanel(i18n$t('WISP Calculator'), windowTitle=NULL),  
+
   p(
-    "Select the datasheet to be processed. It MUST be in CSV format, remember not to use a thousand separator.",
-    "If in doubt, ",
-    downloadLink("downloadData", "download the example file"),
+    i18n$t("Select the datasheet to be processed. It MUST be in CSV format, remember not to use a thousand separator."),
+    br(),
+    i18n$t("If in doubt, "),
+    downloadLink("downloadData", i18n$t("download the example file")),
     "."
   ),
   
   fileInput(
     "file",
-    "Select data file",
+    i18n$t("Select data file"),
+    buttonLabel = i18n$t("Browse..."),
+#   @BUG: https://github.com/Appsilon/shiny.i18n/issues/122
+#    placeholder = i18n$t("No file selected"),    
     accept = c("text/csv",
                "text/comma-separated-values,text/plain",
                ".csv")
   ),
   
-  actionButton("do", "Resolve"),
+  actionButton("do", i18n$t("Resolve")),
   
   p(verbatimTextOutput("errors")),
   
   conditionalPanel(
     condition = "output.calculated==1",
-    p(h3("Ranking Result"), tableOutput("ui")),
-    p(h3("Normalized Data"), tableOutput("normalizedData")),
-    p(h3("Utility Matrix"), tableOutput("utilities"))
+    p(h3(i18n$t("Ranking Result")), tableOutput("ui")),
+    p(h3(i18n$t("Normalized Data")), tableOutput("normalizedData")),
+    p(h3(i18n$t("Utility Matrix")), tableOutput("utilities"))
   ),
   
   helpText(
-    "This implementation is available at ",
+    i18n$t("This implementation is available at "),
     a(
       href = "https://github.com/dioubernardo/rwisp/",
       "https://github.com/dioubernardo/rwisp/",
@@ -53,12 +75,12 @@ server <- function(input, output, session) {
       output$calculated <- reactive(0)
       
       if (is.null(input$file))
-        stop("Select a file")
+        stop(i18n$t("Select a file"))
       
       result <- rwispfromcsv(input$file$datapath)
       
-      colnames(result$ui) <- c('Position', 'ui')
-
+      colnames(result$ui) <- c(i18n$t('Position'), 'ui')
+      
       output$ui <- renderTable(result$ui,
                                rownames = TRUE,
                                digits = 2)
@@ -73,10 +95,10 @@ server <- function(input, output, session) {
           'uiwpd',
           'uiwsr',
           'uiwpr',
-          'üiwsd',
-          'üiwpd',
-          'üiwsr',
-          'üiwpr')
+          'ūiwsd',
+          'ūiwpd',
+          'ūiwsr',
+          'ūiwpr')
       output$utilities <-
         renderTable(result$utilities,
                     rownames = TRUE,
@@ -95,6 +117,10 @@ server <- function(input, output, session) {
       file.copy("tests/test.csv", con)
     }
   )
+  
+  observeEvent(input$selected_language, {
+    update_lang(input$selected_language)
+  })
   
 }
 

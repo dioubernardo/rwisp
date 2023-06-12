@@ -1,0 +1,88 @@
+{
+	"languages": [
+		"en",
+		"pt-BR"
+	],
+	"translation": [
+		{
+			"en": "WISP Calculator",
+			"pt-BR": "Calculadora WISP"
+		},
+		{
+			"en": "Select the datasheet to be processed. It MUST be in CSV format, remember not to use a thousand separator.",
+			"pt-BR": "Selecione a planilha de dados a ser processada. DEVE estar no formato CSV, lembre-se de não usar separador de milhar."
+		},
+		{
+			"en": "If in doubt, ",
+			"pt-BR": "Em caso de dúvida, "
+		},
+		{
+			"en": "download the example file",
+			"pt-BR": "baixe o arquivo de exemplo"
+		},
+		{
+			"en": "Select data file",
+			"pt-BR": "Selecione a planilha de dados"
+		},
+		{
+		  "en": "Browse...",
+			"pt-BR": "Selecionar..."
+		},
+		{
+		  "en": "No file selected",
+			"pt-BR": "Nenhum arquivo selecionado"
+		},
+		{
+			"en": "Resolve",
+			"pt-BR": "Resolver"
+		},
+		{
+			"en": "Ranking Result",
+			"pt-BR": "Resultado da Ordenação"
+		},
+		{
+			"en": "Normalized Data",
+			"pt-BR": "Dados Normalizados"
+		},
+		{
+			"en": "Utility Matrix",
+			"pt-BR": "Matriz de Utilidades"
+		},
+		{
+			"en": "This implementation is available at ",
+			"pt-BR": "Esta implementação está disponível em "
+		},
+		{
+			"en": "Select a file",
+			"pt-BR": "Selecione um arquivo"
+		},
+		{
+			"en": "Position",
+			"pt-BR": "Posição"
+		},
+		{
+			"en": "Only 'min' or 'max' are valid for criteria optimization",
+			"pt-BR": "Somente 'min' ou 'max' são válidos para otimização dos critérios"
+		},
+		{
+			"en": "The sum of the weights must be equal to 1",
+			"pt-BR": "A soma dos pesos deve ser igual a 1"
+		},
+		{
+			"en": "Non-standard file the first line must contain the criteria, see example file",
+			"pt-BR": "Arquivo fora do padrão, a primeira linha deve conter os critérios, veja arquivo de exemplo"
+		},
+		{
+			"en": "Non-standard file the second line must contain the optimization, see example file",
+			"pt-BR": "Arquivo fora do padrão, a segunda linha deve conter as otimizações, veja arquivo de exemplo"
+		},
+		{
+			"en": "Non-standard file the third line must contain the weights, see example file",
+			"pt-BR": "Arquivo fora do padrão, a terceira linha deve conter os pesos, veja arquivo de exemplo"
+		},
+		{
+			"en": "Non-default file the fourth line must be empty, see example file",
+			"pt-BR": "Arquivo fora do padrão, a quarta linha deve ficar vazia, veja arquivo de exemplo"
+		}
+	]
+}
