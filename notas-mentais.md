@@ -11,8 +11,8 @@ roxygenise()
 # Envio ao cran
 
 -- tag 
-git tag -a v1.0.3 -m "Stable version"
-git push -u origin v1.0.3
+git tag -a v1.0.4 -m "Stable version"
+git push -u origin v1.0.4
 
 -- build
 

@@ -1,1 +1,1 @@
-correction @export and examples
+Update of the equations according to the most recent publication of the method
