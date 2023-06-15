@@ -26,3 +26,7 @@ check_rhub()
 check_win_devel()
 
 release(pkg = ".")
+
+BUG do i18n
+https://github.com/Appsilon/shiny.i18n/issues/123
+https://community.rstudio.com/t/package-not-being-recognized-in-the-application/168165
