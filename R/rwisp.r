@@ -25,8 +25,8 @@
 wispcalc <- function(data, alternatives, optimizations, weights) {
   tryCatch({
     
-    imax = nrow(data)
-    jmax = ncol(data)
+    imax <- nrow(data)
+    jmax <- ncol(data)
     
     # optimizations validation
     hascriteriamin <- FALSE
@@ -50,8 +50,8 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
 
     # normalization
     normalizedData <- matrix(0, imax, jmax)
-    colnames(normalizedData) = paste("C", 1:jmax, sep="")
-    rownames(normalizedData) = alternatives
+    colnames(normalizedData) <- paste("C", 1:jmax, sep="")
+    rownames(normalizedData) <- alternatives
     for (j in 1:jmax) {
       max <- max(data[, j])
       for (i in 1:imax) {
@@ -83,8 +83,8 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
         }
       }
       
-      uiwsd[i] = uiwsdmax - uiwsdmin
-      uiwpd[i] = uiwpdmax - uiwpdmin
+      uiwsd[i] <- uiwsdmax - uiwsdmin
+      uiwpd[i] <- uiwpdmax - uiwpdmin
       
       if (hascriteriamin == FALSE){
         uiwsdmin <- 1
@@ -95,8 +95,8 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
         uiwpdmax <- 1
       }
       
-      uiwsr[i] = uiwsdmax / uiwsdmin
-      uiwpr[i] = uiwpdmax / uiwpdmin
+      uiwsr[i] <- uiwsdmax / uiwsdmin
+      uiwpr[i] <- uiwpdmax / uiwpdmin
     }
     
     # recalcular utilidades
@@ -120,9 +120,9 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
     # utility global
     ui <- matrix(0, imax, 2)
     colnames(ui) <- c('position','ui')
-    rownames(ui) = alternatives
+    rownames(ui) <- alternatives
     for (i in 1:imax) {
-      ui[i,2] = (u2iwsd[i] +  u2iwpd[i] +  u2iwsr[i] +  u2iwpr[i]) / 4
+      ui[i,2] <- (u2iwsd[i] +  u2iwpd[i] +  u2iwsr[i] +  u2iwpr[i]) / 4
     }
     ui <- ui[order(as.numeric(ui[,2]), decreasing = TRUE), ]
     ui[,1] <- c(1:imax)
@@ -130,7 +130,7 @@ wispcalc <- function(data, alternatives, optimizations, weights) {
     # utilities matrix
     utilities <- matrix(c(uiwsd, uiwpd, uiwsr, uiwpr, u2iwsd, u2iwpd, u2iwsr, u2iwpr), imax, 8)
     colnames(utilities) <- c('uiwsd', 'uiwpd', 'uiwsr', 'uiwpr', 'u2iwsd', 'u2iwpd', 'u2iwsr', 'u2iwpr')
-    rownames(utilities) = alternatives
+    rownames(utilities) <- alternatives
     
     return(list("ui" = ui, "normalizedData" = normalizedData, "utilities" = utilities))
   },
