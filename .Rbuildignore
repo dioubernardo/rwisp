@@ -1,13 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
-test-csv.r
-teste.r
-
 app.r
 
 rsconnect*
-tests*
 ^LICENSE\.md$
 
 cran-comments.md

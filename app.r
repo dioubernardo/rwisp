@@ -65,7 +65,7 @@ server <- function(input, output, session) {
       colnames(result$ui) <- c('Position', 'ui')
       
       output$ui <- renderTable({
-        result$ui[,2] <- formatC(result$ui[,2], digits = 2)
+        result$ui[,2] <- formatC(result$ui[,2], digits = 3)
         result$ui[,1] <- formatC(result$ui[,1], digits = 0)
         result$ui
       }, rownames = TRUE, align = 'lrr')
@@ -98,9 +98,9 @@ server <- function(input, output, session) {
   })
   
   output$downloadData <- downloadHandler(
-    filename = "test.csv",
+    filename = "example.csv",
     content = function(con) {
-      file.copy("tests/test.csv", con)
+      file.copy("inst/extdata/example.csv", con)
     }
   )
   

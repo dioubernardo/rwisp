@@ -47,7 +47,3 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
-
-tests/T-*
-tests/*.xls
-Dargisa articles/*
