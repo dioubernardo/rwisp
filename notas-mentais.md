@@ -8,6 +8,12 @@ rsconnect::deployApp('.')
 library(roxygen2)
 roxygenise()
 
+# testar
+devtools::test()
+devtools::test_coverage()
+
+test_coverage_active_file()
+
 # Envio ao cran
 
 -- tag 
