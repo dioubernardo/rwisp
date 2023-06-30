@@ -1,9 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 
-app.r
-
-rsconnect*
 ^LICENSE\.md$
 
 cran-comments.md

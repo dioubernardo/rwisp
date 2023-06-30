@@ -8,6 +8,8 @@ This project consists of the implementation of the method in R, its tests, the C
 If you just want to run the method by reading the data contained in a CSV file, use the application hosted at shinyapps.io.
 [Open rwisp on shinyapps.io](https://bernardosilva.shinyapps.io/rwisp/)
 
+The web application repository is [github.com/dioubernardo/rwispweb](https://github.com/dioubernardo/rwispweb)
+
 ## Reference
 
 Stanujkic, D., Popovic, G., Karabasevic, D., Meidute-Kavaliauskiene, I., & Ulutaş, A. (2023). An Integrated Simple Weighted Sum Product Method—WISP. IEEE Transactions on Engineering Management, 70(5), 1933–1944. doi: [10.1109/TEM.2021.3075783](https://doi.org/10.1109/TEM.2021.3075783)
