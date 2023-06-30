@@ -1,1 +1,1 @@
-After the first stable version, I contacted the author of the method and he gave me new information that was not in the original article. Updated the used equations and references.
+Development of test codes, 100% coverage
